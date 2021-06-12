@@ -912,6 +912,14 @@ let slider = new Swiper('.slider-mainscreen__wrapper', {
 	//},
 });
 
+$(window).on('load', function () {
+	$('body').addClass('loaded_hiding');
+	window.setTimeout(function () {
+		$('body').addClass('loaded');
+		$('body').removeClass('loaded_hiding');
+	}, 500);
+});
+
 $('.header-info__close').click(function () {
 	let movie = $(this).closest('.movie');
 	let infoHover = movie.find('.hover-movie__info');
@@ -979,7 +987,8 @@ lineViewButton.click(function () {
 });
 
 window.onresize = function (event) {
-	document.location.reload(true);
+	let mainscreenHeight = $('.mainscreen').css('height');
+	$('.slider-mainscreen__slide').css('height', mainscreenHeight);
 }
 //let btn = document.querySelectorAll('button[type="submit"],input[type="submit"]');
 let forms = document.querySelectorAll('form');
